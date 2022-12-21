@@ -10,7 +10,7 @@ const TodoFilters = ({ total, activeFilter, showAllTodos, showActiveTodos, showC
                 <FilterButton action={()=> showCompletedTodos()} active={activeFilter} filter='Completas'/>
             </FilterButtonContainer>
 
-            <button onClick={() => handleClearComplete()} className="text-gray-400 hover:text-white cursor-pointer transition-all duration-300 ease-in">
+            <button onClick={() => handleClearComplete()} className="text-gray-400 hover:text-white cursor-pointer transition-all duration-300 ease-in-out">
                 Limpiar Completadas
             </button>
 

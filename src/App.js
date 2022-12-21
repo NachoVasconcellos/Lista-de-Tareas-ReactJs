@@ -9,28 +9,28 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      title: 'Watch the next Marvel Movie',
+      title: 'Hacer Ejercicios',
       completed: false,
     },
     {
       id: 2,
-      title: 'Record the next Video',
+      title: 'Practicar Programacion',
      completed: false,
     },
     {
       id: 3,
-      title: 'Wash the dishes',
+      title: 'Practicar Guitarra',
       completed: false,
     },
     {
       id: 4,
-      title: 'Study 2 hours',
+      title: 'Hacer Proyectos con React',
       completed: false,
     }
   ])
 
-  const [activeFilter, setActiveFilter] = useState('all')
-  const [filteredTodos, setFilteredTodos] = useState(todos)
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [filteredTodos, setFilteredTodos] = useState(todos);
 
   const addTodo = (title) => {
     const lastId = todos.length > 0 ? todos[todos.length - 1].id : 1;
@@ -51,20 +51,20 @@ function App() {
       if(todo.id === id) {
         return {...todo, completed: !todo.completed}
       }
-      return todo
+      return todo;
     })
 
     setTodos(updatedList);
   }
+  
+  const handleClearComplete = () => {
+    const updatedList = todos.filter(todo => !todo.completed);
+    setTodos(updatedList);
+  };
 
   const handleDelete = (id) => {
     const updatedList = todos.filter(todo => todo.id !== id);
     setTodos(updatedList);
-  }
-
-  const handleClearComplete = () => {
-    const updatedList = todos.filter(todo => !todo.completed);
-    setActiveFilter(updatedList);
   }
 
   const showAllTodos = () => {
@@ -81,13 +81,13 @@ function App() {
 
   useEffect(() => {
     if (activeFilter === 'all') {
-      setFilteredTodos(todos)
+      setFilteredTodos(todos);
     } else if (activeFilter === 'active') {
-      const activeTodos = todos.filter(todo => todo.completed === false)
+      const activeTodos = todos.filter(todo => todo.completed === false);
       setFilteredTodos(activeTodos)
     } else if (activeFilter === 'completed') {
-      const completedTodos = todos.filter(todo => todo.completed === true)
-      setFilteredTodos(completedTodos)
+      const completedTodos = todos.filter(todo => todo.completed === true);
+      setFilteredTodos(completedTodos);
     }
   },[activeFilter, todos])
 
@@ -97,13 +97,13 @@ function App() {
         <Title/>
         <TodoInput addTodo={addTodo}/>
         <TodoList 
-          todos={filteredTodos}
           activeFilter={activeFilter}
-          handleSetComplete={handleSetComplete}
-          handleDelete={handleDelete}
+          todos={filteredTodos}
           showAllTodos={showAllTodos}
           showActiveTodos={showActiveTodos}
           showCompletedTodos={showCompletedTodos}
+          handleSetComplete={handleSetComplete}
+          handleDelete={handleDelete}
           handleClearComplete={handleClearComplete}
         />
       </div>
